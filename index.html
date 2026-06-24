@@ -350,43 +350,6 @@
         .empty-state i { font-size: 4rem; margin-bottom: 20px; opacity: 0.5; }
         .empty-state h3 { margin-bottom: 10px; color: var(--text-color); }
 
-        .loading {
-            text-align: center;
-            padding: 60px 20px;
-        }
-        .spinner {
-            width: 50px;
-            height: 50px;
-            border: 5px solid var(--border-color);
-            border-top-color: var(--primary-color);
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin: 0 auto 15px;
-        }
-
-        .update-info {
-            background: var(--card-bg);
-            padding: 15px;
-            border-radius: var(--radius-md);
-            margin-bottom: 20px;
-            border-right: 4px solid var(--primary-color);
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-        .update-info i { font-size: 1.5rem; color: var(--primary-color); }
-
-        .debug-info {
-            background: #fff3cd;
-            border: 1px solid #ffc107;
-            padding: 15px;
-            border-radius: var(--radius-md);
-            margin: 20px 0;
-            font-family: monospace;
-            font-size: 0.9rem;
-            color: #333;
-        }
-
         @media (max-width: 768px) {
             .navbar .container { flex-direction: column; }
             .stats-grid, .charts-grid { grid-template-columns: 1fr; }
@@ -412,35 +375,10 @@
     </nav>
 
     <main class="container">
-        <div id="loading-message" class="loading">
-            <div class="spinner"></div>
-            <h3>جارٍ تحميل البيانات...</h3>
-            <p>يرجى الانتظار</p>
-        </div>
-
-        <div id="debug-info" class="debug-info" style="display: none;"></div>
-
-        <div id="error-message" class="empty-state" style="display: none;">
-            <i class="fas fa-exclamation-triangle" style="color: #e74c3c;"></i>
-            <h3>حدث خطأ في تحميل البيانات</h3>
-            <p id="error-text">يرجى التأكد من وجود ملفات البيانات</p>
-            <div id="error-details" style="margin-top: 20px; text-align: right; font-size: 0.9rem;"></div>
-            <button class="btn btn-primary" onclick="loadAllData()" style="margin-top: 20px;">
-                <i class="fas fa-redo"></i> إعادة المحاولة
-            </button>
-        </div>
-
-        <section id="overview" class="section">
+        <section id="overview" class="section active">
             <div class="section-header">
                 <h2><i class="fas fa-chart-line"></i> نظرة عامة</h2>
                 <p class="subtitle">إحصائيات شاملة عن سباق Tour de France 2025</p>
-            </div>
-
-            <div class="update-info" id="update-info" style="display: none;">
-                <i class="fas fa-sync-alt"></i>
-                <div>
-                    <strong>آخر تحديث:</strong> <span id="last-update">-</span>
-                </div>
             </div>
             
             <div class="stats-grid">
@@ -506,7 +444,7 @@
         <section id="gc" class="section">
             <div class="section-header">
                 <h2><i class="fas fa-trophy"></i> الترتيب العام</h2>
-                <p class="subtitle">ترتيب جميع الدراجين في السباق</p>
+                <p class="subtitle">ترتيب جميع الدراجين في السباق (160 دراج)</p>
             </div>
             <div class="filters-bar">
                 <div class="search-box">
@@ -544,13 +482,13 @@
         <section id="stages" class="section">
             <div class="section-header">
                 <h2><i class="fas fa-route"></i> تفاصيل المراحل</h2>
-                <p class="subtitle">معلومات عن كل مرحلة من مراحل السباق</p>
+                <p class="subtitle">معلومات عن كل مرحلة من مراحل السباق (21 مرحلة)</p>
             </div>
             <div class="info-box">
                 <i class="fas fa-info-circle"></i>
                 <div>
                     <h3>حالة المراحل</h3>
-                    <p>✅ المرحلة المتوفرة النتائج | ⏳ المراحل في انتظار التحديث</p>
+                    <p>✅ المرحلة 1: متوفرة النتائج | ⏳ باقي المراحل: في انتظار النتائج</p>
                 </div>
             </div>
             <div class="stages-grid" id="stages-grid"></div>
@@ -579,195 +517,68 @@
     <button id="scroll-top" class="scroll-top-btn"><i class="fas fa-arrow-up"></i></button>
 
     <script>
-        // ============ المتغيرات العامة ============
-        let DATA = {};
+        // ============ البيانات المضمنة ============
+        const TDF_DATA = {
+            "general_classification": [
+                {"rank": "1", "rider": "T. POGACAR", "rider_no": "1", "team": "UAE TEAM EMIRATES XRG", "time": "76h 00' 32''", "gap": "-"},
+                {"rank": "2", "rider": "J. VINGEGAARD", "rider_no": "11", "team": "TEAM VISMA | LEASE A BIKE", "time": "76h 04' 56''", "gap": "+ 00h 04' 24''"},
+                {"rank": "3", "rider": "F. LIPOWITZ", "rider_no": "72", "team": "RED BULL - BORA - HANSGROHE", "time": "76h 11' 32''", "gap": "+ 00h 11' 00''"},
+                {"rank": "4", "rider": "O. ONLEY", "rider_no": "191", "team": "TEAM PICNIC POSTNL", "time": "76h 12' 44''", "gap": "+ 00h 12' 12''"},
+                {"rank": "5", "rider": "F. GALL", "rider_no": "151", "team": "DECATHLON AG2R LA MONDIALE TEAM", "time": "76h 17' 44''", "gap": "+ 00h 17' 12''"},
+                {"rank": "6", "rider": "T. JOHANNESSEN", "rider_no": "221", "team": "UNO-X MOBILITY", "time": "76h 20' 46''", "gap": "+ 00h 20' 14''"},
+                {"rank": "7", "rider": "K. VAUQUELIN", "rider_no": "131", "team": "ARKEA-B&B HOTELS", "time": "76h 23' 07''", "gap": "+ 00h 22' 35''"},
+                {"rank": "8", "rider": "P. ROGLIC", "rider_no": "71", "team": "RED BULL - BORA - HANSGROHE", "time": "76h 26' 02''", "gap": "+ 00h 25' 30''"},
+                {"rank": "9", "rider": "B. HEALY", "rider_no": "31", "team": "EF EDUCATION - EASYPOST", "time": "76h 28' 34''", "gap": "+ 00h 28' 02''"},
+                {"rank": "10", "rider": "J. JEGAT", "rider_no": "186", "team": "TOTALENERGIES", "time": "76h 33' 14''", "gap": "+ 00h 32' 42''"}
+            ],
+            "stages_info": [
+                {"stage_number": 1, "text": "Stage 1 |07/04Barcelone > Barcelone"},
+                {"stage_number": 2, "text": "Stage 2 |07/05Tarragone > Barcelone"},
+                {"stage_number": 3, "text": "Stage 3 |07/06Granollers > Les Angles"},
+                {"stage_number": 4, "text": "Stage 4 |07/07Carcassonne > Foix"},
+                {"stage_number": 5, "text": "Stage 5 |07/08Lannemezan > Pau"},
+                {"stage_number": 6, "text": "Stage 6 |07/09Pau > Gavarnie-Gèdre"},
+                {"stage_number": 7, "text": "Stage 7 |07/10Hagetmau > Bordeaux"},
+                {"stage_number": 8, "text": "Stage 8 |07/11Périgueux > Bergerac"},
+                {"stage_number": 9, "text": "Stage 9 |07/12Malemort > Ussel"},
+                {"stage_number": 10, "text": "Stage 10 |07/14Aurillac > Le Lioran"},
+                {"stage_number": 11, "text": "Stage 11 |07/15Vichy > Nevers"},
+                {"stage_number": 12, "text": "Stage 12 |07/16Circuit Nevers Magny-Cours > Chalon-sur-Saône"},
+                {"stage_number": 13, "text": "Stage 13 |07/17Dole > Belfort"},
+                {"stage_number": 14, "text": "Stage 14 |07/18Mulhouse > Le Markstein Fellering"},
+                {"stage_number": 15, "text": "Stage 15 |07/19Champagnole > Plateau de Solaison"},
+                {"stage_number": 16, "text": "Stage 16 |07/21Évian-les-Bains > Thonon-les-Bains"},
+                {"stage_number": 17, "text": "Stage 17 |07/22Chambery > Voiron"},
+                {"stage_number": 18, "text": "Stage 18 |07/23Voiron > Orcières-Merlette"},
+                {"stage_number": 19, "text": "Stage 19 |07/24Gap > Alpe d'Huez"},
+                {"stage_number": 20, "text": "Stage 20 |07/25Le Bourg d'Oisans > Alpe d'Huez"},
+                {"stage_number": 21, "text": "Stage 21 |07/26Thoiry > Paris Champs-Élysées"}
+            ],
+            "stage_1_ranking": [
+                {"rank": "1", "rider": "J. PHILIPSEN", "rider_no": "101", "team": "ALPECIN-DECEUNINCK"},
+                {"rank": "2", "rider": "B. GIRMAY", "rider_no": "41", "team": "INTERMARCHÉ - WANTY"},
+                {"rank": "3", "rider": "S. WAERENSKJOLD", "rider_no": "228", "team": "UNO-X MOBILITY"},
+                {"rank": "4", "rider": "A. TURGIS", "rider_no": "187", "team": "TOTALENERGIES"},
+                {"rank": "5", "rider": "M. TRENTIN", "rider_no": "118", "team": "TUDOR PRO CYCLING TEAM"}
+            ]
+        };
+
         let charts = {};
-        let availableStages = new Set();
+        const DATA = TDF_DATA;
 
-        // ============ قائمة المسارات المحتملة ============
-        const DATA_PATHS = [
-            'data/tdf_all_data.json',
-            './data/tdf_all_data.json',
-            '/data/tdf_all_data.json',
-            'tdf_all_data.json',
-            './tdf_all_data.json'
-        ];
-
-        // ============ دالة البحث الذكي عن المفاتيح ============
-        function findKey(obj, keyName) {
-            if (!obj || typeof obj !== 'object') return null;
-            // البحث عن المفتاح بغض النظر عن المسافات
-            for (const key of Object.keys(obj)) {
-                if (key.trim() === keyName) {
-                    return obj[key];
-                }
-            }
-            return null;
-        }
-
-        // ============ تنظيف كائن واحد ============
-        function cleanObj(obj) {
-            if (!obj || typeof obj !== 'object') return obj;
-            const result = {};
-            for (const [key, value] of Object.entries(obj)) {
-                const cleanKey = key.trim();
-                const cleanValue = typeof value === 'string' ? value.trim() : value;
-                result[cleanKey] = cleanValue;
-            }
-            return result;
-        }
-
-        // ============ تنظيف البيانات الشاملة ============
-        function cleanData(rawData) {
-            const clean = {};
-            
-            // الترتيب العام
-            const gcRaw = findKey(rawData, 'general_classification') || [];
-            clean.general_classification = gcRaw.map(cleanObj);
-
-            // معلومات المراحل
-            const stagesRaw = findKey(rawData, 'stages_info') || [];
-            clean.stages_info = stagesRaw.map(cleanObj);
-
-            // نتائج جميع المراحل (1-21)
-            for (let i = 1; i <= 21; i++) {
-                const stageKey = `stage_${i}_ranking`;
-                const stageDataRaw = findKey(rawData, stageKey);
-                
-                if (stageDataRaw && Array.isArray(stageDataRaw) && stageDataRaw.length > 0) {
-                    const stageData = stageDataRaw.map(rider => {
-                        const cleaned = cleanObj(rider);
-                        
-                        // تصحيح الأعمدة المبدلة (team = رقم، time = اسم الفريق)
-                        if (cleaned.team && /^\d+$/.test(cleaned.team)) {
-                            return {
-                                stage: i,
-                                rank: cleaned.rank,
-                                rider: cleaned.rider,
-                                rider_no: cleaned.team,
-                                team: cleaned.time || '-',
-                                time: '-'
-                            };
-                        }
-                        
-                        return {
-                            stage: i,
-                            rank: cleaned.rank,
-                            rider: cleaned.rider,
-                            rider_no: cleaned.rider_no || '',
-                            team: cleaned.team || '',
-                            time: cleaned.time || '-'
-                        };
-                    });
-                    clean[stageKey] = stageData;
-                }
-            }
-
-            // معلومات التحديث
-            clean.scraped_at = findKey(rawData, 'scraped_at') || null;
-            clean.source = findKey(rawData, 'source') || '';
-
-            return clean;
-        }
-
-        // ============ تحميل البيانات ============
-        async function loadAllData() {
-            const debugInfo = document.getElementById('debug-info');
-            let debugText = '<strong>🔍 محاولة تحميل البيانات من المسارات التالية:</strong><br>';
-            
-            try {
-                document.getElementById('loading-message').style.display = 'block';
-                document.getElementById('error-message').style.display = 'none';
-                debugInfo.style.display = 'none';
-                document.querySelectorAll('.section').forEach(s => s.style.display = 'none');
-
-                let rawData = null;
-                let successPath = null;
-
-                for (const path of DATA_PATHS) {
-                    try {
-                        debugText += `⏳ ${path}... `;
-                        const response = await fetch(path, { 
-                            method: 'GET',
-                            cache: 'no-cache',
-                            headers: { 'Accept': 'application/json' }
-                        });
-                        
-                        if (response.ok) {
-                            rawData = await response.json();
-                            successPath = path;
-                            debugText += '✅ نجح!<br>';
-                            break;
-                        } else {
-                            debugText += `❌ ${response.status}<br>`;
-                        }
-                    } catch (e) {
-                        debugText += `❌ خطأ<br>`;
-                    }
-                }
-
-                if (!rawData) {
-                    throw new Error('لم يتم العثور على ملف البيانات في أي من المسارات');
-                }
-
-                // تنظيف البيانات
-                DATA = cleanData(rawData);
-                
-                // تحديد المراحل المتوفرة
-                availableStages = new Set();
-                for (let i = 1; i <= 21; i++) {
-                    const key = `stage_${i}_ranking`;
-                    if (DATA[key] && DATA[key].length > 0) {
-                        availableStages.add(i);
-                    }
-                }
-
-                // إخفاء رسالة التحميل وإظهار المحتوى
-                document.getElementById('loading-message').style.display = 'none';
-                document.querySelectorAll('.section').forEach(s => s.style.display = '');
-                document.getElementById('overview').classList.add('active');
-
-                // تحديث الواجهة
-                updateOverview();
-                updateGC();
-                updateStages();
-                updateStageResults();
-                createCharts();
-
-                console.log(`✅ تم تحميل البيانات بنجاح من: ${successPath}`);
-                console.log(`   - الترتيب العام: ${DATA.general_classification.length} دراج`);
-                console.log(`   - المراحل: ${DATA.stages_info.length} مرحلة`);
-                console.log(`   - المراحل المتوفرة: ${availableStages.size} مرحلة`);
-                console.log(`   - المراحل: ${Array.from(availableStages).join(', ')}`);
-
-            } catch (error) {
-                console.error('❌ خطأ:', error);
-                document.getElementById('loading-message').style.display = 'none';
-                document.getElementById('error-message').style.display = 'block';
-                document.getElementById('error-text').textContent = error.message;
-                
-                debugInfo.innerHTML = debugText + '<br><strong>💡 الحلول المقترحة:</strong><br>' +
-                    '1. تأكد من وجود مجلد <code>data/</code> في Repository<br>' +
-                    '2. تأكد من وجود ملف <code>tdf_all_data.json</code> داخل مجلد data/<br>' +
-                    '3. انتظر 1-2 دقيقة بعد الرفع ثم اضغط Ctrl+F5<br>' +
-                    '4. تحقق من الرابط: <a href="' + window.location.origin + window.location.pathname + 'data/tdf_all_data.json" target="_blank">اضغط هنا لاختبار الملف</a>';
-                debugInfo.style.display = 'block';
-            }
-        }
-
-        // ============ تهيئة الصفحة ============
         document.addEventListener('DOMContentLoaded', () => {
             initializeTheme();
             initializeNavigation();
             initializeScrollTop();
-            loadAllData();
+            updateOverview();
+            updateGC();
+            updateStages();
+            updateStageResults();
+            createCharts();
         });
 
-        // ============ قسم النظرة العامة ============
         function updateOverview() {
             const gcData = DATA.general_classification;
-            if (!gcData || gcData.length === 0) return;
-            
             const winner = gcData[0];
             document.getElementById('winner-name').textContent = winner.rider;
             document.getElementById('winner-team').textContent = winner.team;
@@ -775,13 +586,6 @@
             document.getElementById('total-stages').textContent = DATA.stages_info.length;
             document.getElementById('winner-time').textContent = winner.time;
             document.getElementById('winner-gap').textContent = 'الزمن الإجمالي';
-
-            if (DATA.scraped_at) {
-                const date = new Date(DATA.scraped_at);
-                document.getElementById('last-update').textContent = date.toLocaleString('ar-EG');
-                document.getElementById('update-info').style.display = 'flex';
-            }
-
             updateJerseys();
             updateTimeline();
         }
@@ -813,7 +617,7 @@
                 const dateMatch = text.match(/(\d{2}\/\d{2})/);
                 const date = dateMatch ? dateMatch[1] : '';
                 const route = extractRoute(text);
-                const hasResults = availableStages.has(stage.stage_number);
+                const hasResults = stage.stage_number === 1;
                 const statusClass = hasResults ? 'completed' : 'upcoming';
                 const statusIcon = hasResults ? '✅' : '⏳';
                 return `
@@ -830,13 +634,12 @@
         function extractRoute(text) {
             const parts = text.split('|');
             if (parts.length > 1) {
-                const route = parts[1].replace(/\d{2}\/\d{2}/, '').replace(/Find out more/g, '').replace(/\s+/g, ' ').trim();
+                const route = parts[1].replace(/\d{2}\/\d{2}/, '').replace(/Find out more/g, '').trim();
                 return route.length > 25 ? route.substring(0, 25) + '...' : route;
             }
             return '';
         }
 
-        // ============ الرسوم البيانية ============
         function createCharts() {
             createGapChart();
             createTeamsChart();
@@ -901,7 +704,6 @@
             });
         }
 
-        // ============ قسم الترتيب العام ============
         function updateGC() {
             const tbody = document.getElementById('gc-tbody');
             const gcData = DATA.general_classification;
@@ -961,11 +763,10 @@
             const blob = new Blob(['\ufeff' + csv], { type: 'text/csv;charset=utf-8;' });
             const link = document.createElement('a');
             link.href = URL.createObjectURL(blob);
-            link.download = 'tdf_general_classification.csv';
+            link.download = 'tdf_general_classification_ar.csv';
             link.click();
         }
 
-        // ============ قسم المراحل ============
         function updateStages() {
             const grid = document.getElementById('stages-grid');
             const stagesData = DATA.stages_info;
@@ -974,10 +775,9 @@
                 const dateMatch = text.match(/(\d{2}\/\d{2})/);
                 const date = dateMatch ? dateMatch[1] : '';
                 const route = extractRoute(text);
-                const hasResults = availableStages.has(stage.stage_number);
-                const ridersCount = hasResults ? DATA[`stage_${stage.stage_number}_ranking`].length : 0;
+                const hasResults = stage.stage_number === 1;
                 const statusBadge = hasResults ? 
-                    `<span style="background: var(--green-jersey); color: white; padding: 3px 10px; border-radius: 10px; font-size: 0.8rem;">✅ ${ridersCount} دراج</span>` :
+                    '<span style="background: var(--green-jersey); color: white; padding: 3px 10px; border-radius: 10px; font-size: 0.8rem;">✅ متوفرة</span>' :
                     '<span style="background: var(--text-muted); color: white; padding: 3px 10px; border-radius: 10px; font-size: 0.8rem;">⏳ في الانتظار</span>';
                 return `
                     <div class="stage-card">
@@ -1000,15 +800,13 @@
             }).join('');
         }
 
-        // ============ قسم نتائج المراحل ============
         function updateStageResults() {
             const select = document.getElementById('stage-select');
             let options = '';
             DATA.stages_info.forEach(stage => {
-                const hasResults = availableStages.has(stage.stage_number);
+                const hasResults = stage.stage_number === 1;
                 const icon = hasResults ? '✅' : '⏳';
-                const route = extractRoute(stage.text || '');
-                options += `<option value="${stage.stage_number}">${icon} المرحلة ${stage.stage_number} - ${route}</option>`;
+                options += `<option value="${stage.stage_number}">${icon} المرحلة ${stage.stage_number}</option>`;
             });
             select.innerHTML = options;
             select.addEventListener('change', (e) => {
@@ -1018,18 +816,17 @@
                 const stageNum = parseInt(select.value);
                 exportStageResults(stageNum);
             });
-            const firstAvailable = Array.from(availableStages)[0] || 1;
-            displayStageResults(firstAvailable);
+            displayStageResults(1);
         }
 
         function displayStageResults(stageNumber) {
             const content = document.getElementById('stage-results-content');
-            const key = `stage_${stageNumber}_ranking`;
-            const stageData = DATA[key] || [];
             const stageInfo = DATA.stages_info.find(s => s.stage_number == stageNumber);
-            const route = stageInfo ? extractRoute(stageInfo.text) : '';
-
-            if (stageData.length > 0) {
+            const hasResults = stageNumber === 1;
+            
+            if (hasResults && DATA.stage_1_ranking.length > 0) {
+                const stageData = DATA.stage_1_ranking;
+                const route = stageInfo ? extractRoute(stageInfo.text) : '';
                 content.innerHTML = `
                     <div class="info-box" style="background: linear-gradient(135deg, #27ae60, #229954);">
                         <i class="fas fa-check-circle"></i>
@@ -1059,7 +856,7 @@
                                         <tr>
                                             <td><span class="rank-badge ${rankClass}">${rank}</span></td>
                                             <td><strong>${rider.rider}</strong></td>
-                                            <td>${rider.rider_no || '-'}</td>
+                                            <td>${rider.rider_no}</td>
                                             <td>${rider.team}</td>
                                         </tr>
                                     `;
@@ -1073,22 +870,20 @@
                     <div class="empty-state">
                         <i class="fas fa-hourglass-half"></i>
                         <h3>بيانات المرحلة ${stageNumber} غير متوفرة حالياً</h3>
-                        <p>سيتم إضافة النتائج فور تحديث الملفات من السكريبت</p>
+                        <p>سيتم إضافة النتائج فور توفرها من الموقع الرسمي</p>
                     </div>
                 `;
             }
         }
 
         function exportStageResults(stageNumber) {
-            const key = `stage_${stageNumber}_ranking`;
-            const stageData = DATA[key] || [];
-            if (stageData.length === 0) {
+            if (stageNumber !== 1) {
                 alert('بيانات هذه المرحلة غير متوفرة بعد');
                 return;
             }
             let csv = 'الترتيب,الدراج,رقم الدراج,الفريق\n';
-            stageData.forEach(r => {
-                csv += `${r.rank},${r.rider},${r.rider_no || ''},${r.team}\n`;
+            DATA.stage_1_ranking.forEach(r => {
+                csv += `${r.rank},${r.rider},${r.rider_no},${r.team}\n`;
             });
             const blob = new Blob(['\ufeff' + csv], { type: 'text/csv;charset=utf-8;' });
             const link = document.createElement('a');
@@ -1103,7 +898,6 @@
             displayStageResults(stageNumber);
         }
 
-        // ============ التنقل والوضع الداكن ============
         function initializeNavigation() {
             document.querySelectorAll('.nav-link').forEach(link => {
                 link.addEventListener('click', (e) => {
@@ -1143,7 +937,6 @@
             scrollBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
         }
 
-        // ============ دوال مساعدة ============
         function parseTimeToSeconds(timeStr) {
             if (!timeStr || timeStr === '-') return 0;
             const match = timeStr.match(/(\d+)h\s*(\d+)'\s*(\d+)''/);
