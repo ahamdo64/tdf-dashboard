@@ -8,7 +8,6 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
     
     <style>
-        /* ... نفس CSS السابق ... */
         :root {
             --primary-color: #ffcc00;
             --primary-dark: #e6b800;
@@ -385,6 +384,7 @@
             margin: 20px 0;
             font-family: monospace;
             font-size: 0.9rem;
+            color: #333;
         }
 
         @media (max-width: 768px) {
@@ -412,17 +412,14 @@
     </nav>
 
     <main class="container">
-        <!-- رسالة التحميل -->
         <div id="loading-message" class="loading">
             <div class="spinner"></div>
             <h3>جارٍ تحميل البيانات...</h3>
             <p>يرجى الانتظار</p>
         </div>
 
-        <!-- معلومات التصحيح -->
         <div id="debug-info" class="debug-info" style="display: none;"></div>
 
-        <!-- رسالة الخطأ -->
         <div id="error-message" class="empty-state" style="display: none;">
             <i class="fas fa-exclamation-triangle" style="color: #e74c3c;"></i>
             <h3>حدث خطأ في تحميل البيانات</h3>
@@ -433,7 +430,6 @@
             </button>
         </div>
 
-        <!-- قسم النظرة العامة -->
         <section id="overview" class="section">
             <div class="section-header">
                 <h2><i class="fas fa-chart-line"></i> نظرة عامة</h2>
@@ -507,7 +503,6 @@
             </div>
         </section>
 
-        <!-- قسم الترتيب العام -->
         <section id="gc" class="section">
             <div class="section-header">
                 <h2><i class="fas fa-trophy"></i> الترتيب العام</h2>
@@ -546,7 +541,6 @@
             </div>
         </section>
 
-        <!-- قسم المراحل -->
         <section id="stages" class="section">
             <div class="section-header">
                 <h2><i class="fas fa-route"></i> تفاصيل المراحل</h2>
@@ -562,7 +556,6 @@
             <div class="stages-grid" id="stages-grid"></div>
         </section>
 
-        <!-- قسم نتائج المراحل -->
         <section id="stage-results" class="section">
             <div class="section-header">
                 <h2><i class="fas fa-flag-checkered"></i> نتائج المراحل</h2>
@@ -593,16 +586,91 @@
 
         // ============ قائمة المسارات المحتملة ============
         const DATA_PATHS = [
-            'data/tdf_all_data.json',           // المسار الصحيح
-            './data/tdf_all_data.json',         // مع ./
-            '/data/tdf_all_data.json',          // مع /
-            'tdf_all_data.json',                // في الجذر
-            './tdf_all_data.json',              // في الجذر مع ./
-            'data/tdf_all_data_clean.json',     // نسخة نظيفة
-            'tdf_all_data_clean.json'           // نسخة نظيفة في الجذر
+            'data/tdf_all_data.json',
+            './data/tdf_all_data.json',
+            '/data/tdf_all_data.json',
+            'tdf_all_data.json',
+            './tdf_all_data.json'
         ];
 
-        // ============ تحميل البيانات مع Fallback ============
+        // ============ دالة البحث الذكي عن المفاتيح ============
+        function findKey(obj, keyName) {
+            if (!obj || typeof obj !== 'object') return null;
+            // البحث عن المفتاح بغض النظر عن المسافات
+            for (const key of Object.keys(obj)) {
+                if (key.trim() === keyName) {
+                    return obj[key];
+                }
+            }
+            return null;
+        }
+
+        // ============ تنظيف كائن واحد ============
+        function cleanObj(obj) {
+            if (!obj || typeof obj !== 'object') return obj;
+            const result = {};
+            for (const [key, value] of Object.entries(obj)) {
+                const cleanKey = key.trim();
+                const cleanValue = typeof value === 'string' ? value.trim() : value;
+                result[cleanKey] = cleanValue;
+            }
+            return result;
+        }
+
+        // ============ تنظيف البيانات الشاملة ============
+        function cleanData(rawData) {
+            const clean = {};
+            
+            // الترتيب العام
+            const gcRaw = findKey(rawData, 'general_classification') || [];
+            clean.general_classification = gcRaw.map(cleanObj);
+
+            // معلومات المراحل
+            const stagesRaw = findKey(rawData, 'stages_info') || [];
+            clean.stages_info = stagesRaw.map(cleanObj);
+
+            // نتائج جميع المراحل (1-21)
+            for (let i = 1; i <= 21; i++) {
+                const stageKey = `stage_${i}_ranking`;
+                const stageDataRaw = findKey(rawData, stageKey);
+                
+                if (stageDataRaw && Array.isArray(stageDataRaw) && stageDataRaw.length > 0) {
+                    const stageData = stageDataRaw.map(rider => {
+                        const cleaned = cleanObj(rider);
+                        
+                        // تصحيح الأعمدة المبدلة (team = رقم، time = اسم الفريق)
+                        if (cleaned.team && /^\d+$/.test(cleaned.team)) {
+                            return {
+                                stage: i,
+                                rank: cleaned.rank,
+                                rider: cleaned.rider,
+                                rider_no: cleaned.team,
+                                team: cleaned.time || '-',
+                                time: '-'
+                            };
+                        }
+                        
+                        return {
+                            stage: i,
+                            rank: cleaned.rank,
+                            rider: cleaned.rider,
+                            rider_no: cleaned.rider_no || '',
+                            team: cleaned.team || '',
+                            time: cleaned.time || '-'
+                        };
+                    });
+                    clean[stageKey] = stageData;
+                }
+            }
+
+            // معلومات التحديث
+            clean.scraped_at = findKey(rawData, 'scraped_at') || null;
+            clean.source = findKey(rawData, 'source') || '';
+
+            return clean;
+        }
+
+        // ============ تحميل البيانات ============
         async function loadAllData() {
             const debugInfo = document.getElementById('debug-info');
             let debugText = '<strong>🔍 محاولة تحميل البيانات من المسارات التالية:</strong><br>';
@@ -616,13 +684,13 @@
                 let rawData = null;
                 let successPath = null;
 
-                // محاولة كل مسار
                 for (const path of DATA_PATHS) {
                     try {
                         debugText += `⏳ ${path}... `;
                         const response = await fetch(path, { 
                             method: 'GET',
-                            cache: 'no-cache'
+                            cache: 'no-cache',
+                            headers: { 'Accept': 'application/json' }
                         });
                         
                         if (response.ok) {
@@ -670,6 +738,7 @@
                 console.log(`   - الترتيب العام: ${DATA.general_classification.length} دراج`);
                 console.log(`   - المراحل: ${DATA.stages_info.length} مرحلة`);
                 console.log(`   - المراحل المتوفرة: ${availableStages.size} مرحلة`);
+                console.log(`   - المراحل: ${Array.from(availableStages).join(', ')}`);
 
             } catch (error) {
                 console.error('❌ خطأ:', error);
@@ -677,74 +746,13 @@
                 document.getElementById('error-message').style.display = 'block';
                 document.getElementById('error-text').textContent = error.message;
                 
-                // عرض معلومات التصحيح
                 debugInfo.innerHTML = debugText + '<br><strong>💡 الحلول المقترحة:</strong><br>' +
                     '1. تأكد من وجود مجلد <code>data/</code> في Repository<br>' +
                     '2. تأكد من وجود ملف <code>tdf_all_data.json</code> داخل مجلد data/<br>' +
-                    '3. تأكد من أن اسم الملف بالضبط <code>tdf_all_data.json</code> (بدون مسافات)<br>' +
-                    '4. انتظر 1-2 دقيقة بعد الرفع ثم اضغط Ctrl+F5<br>' +
-                    '5. تحقق من الرابط: <a href="' + window.location.origin + window.location.pathname + 'data/tdf_all_data.json" target="_blank">اضغط هنا لاختبار الملف</a>';
+                    '3. انتظر 1-2 دقيقة بعد الرفع ثم اضغط Ctrl+F5<br>' +
+                    '4. تحقق من الرابط: <a href="' + window.location.origin + window.location.pathname + 'data/tdf_all_data.json" target="_blank">اضغط هنا لاختبار الملف</a>';
                 debugInfo.style.display = 'block';
             }
-        }
-
-        // ============ تنظيف البيانات ============
-        function cleanData(rawData) {
-            const clean = {};
-            
-            function cleanObj(obj) {
-                if (!obj || typeof obj !== 'object') return obj;
-                const result = {};
-                for (const [key, value] of Object.entries(obj)) {
-                    const cleanKey = key.trim();
-                    const cleanValue = typeof value === 'string' ? value.trim() : value;
-                    result[cleanKey] = cleanValue;
-                }
-                return result;
-            }
-
-            // الترتيب العام
-            clean.general_classification = (rawData.general_classification || rawData['general_classification '] || []).map(cleanObj);
-
-            // معلومات المراحل
-            clean.stages_info = (rawData.stages_info || rawData['stages_info '] || []).map(cleanObj);
-
-            // نتائج جميع المراحل
-            for (let i = 1; i <= 21; i++) {
-                const keys = [`stage_${i}_ranking`, `stage_${i}_ranking `];
-                for (const key of keys) {
-                    if (rawData[key]) {
-                        const stageData = rawData[key].map(rider => {
-                            const cleaned = cleanObj(rider);
-                            if (cleaned.team && /^\d+$/.test(cleaned.team)) {
-                                return {
-                                    stage: i,
-                                    rank: cleaned.rank,
-                                    rider: cleaned.rider,
-                                    rider_no: cleaned.team,
-                                    team: cleaned.time || '-',
-                                    time: '-'
-                                };
-                            }
-                            return {
-                                stage: i,
-                                rank: cleaned.rank,
-                                rider: cleaned.rider,
-                                rider_no: cleaned.rider_no || '',
-                                team: cleaned.team || '',
-                                time: cleaned.time || '-'
-                            };
-                        });
-                        clean[`stage_${i}_ranking`] = stageData;
-                        break;
-                    }
-                }
-            }
-
-            clean.scraped_at = rawData.scraped_at || rawData['scraped_at '] || null;
-            clean.source = rawData.source || rawData['source '] || '';
-
-            return clean;
         }
 
         // ============ تهيئة الصفحة ============
@@ -755,7 +763,7 @@
             loadAllData();
         });
 
-        // ============ باقي الدوال (نفس الكود السابق) ============
+        // ============ قسم النظرة العامة ============
         function updateOverview() {
             const gcData = DATA.general_classification;
             if (!gcData || gcData.length === 0) return;
@@ -822,12 +830,13 @@
         function extractRoute(text) {
             const parts = text.split('|');
             if (parts.length > 1) {
-                const route = parts[1].replace(/\d{2}\/\d{2}/, '').replace(/Find out more/g, '').trim();
+                const route = parts[1].replace(/\d{2}\/\d{2}/, '').replace(/Find out more/g, '').replace(/\s+/g, ' ').trim();
                 return route.length > 25 ? route.substring(0, 25) + '...' : route;
             }
             return '';
         }
 
+        // ============ الرسوم البيانية ============
         function createCharts() {
             createGapChart();
             createTeamsChart();
@@ -892,6 +901,7 @@
             });
         }
 
+        // ============ قسم الترتيب العام ============
         function updateGC() {
             const tbody = document.getElementById('gc-tbody');
             const gcData = DATA.general_classification;
@@ -955,6 +965,7 @@
             link.click();
         }
 
+        // ============ قسم المراحل ============
         function updateStages() {
             const grid = document.getElementById('stages-grid');
             const stagesData = DATA.stages_info;
@@ -989,6 +1000,7 @@
             }).join('');
         }
 
+        // ============ قسم نتائج المراحل ============
         function updateStageResults() {
             const select = document.getElementById('stage-select');
             let options = '';
@@ -1091,6 +1103,7 @@
             displayStageResults(stageNumber);
         }
 
+        // ============ التنقل والوضع الداكن ============
         function initializeNavigation() {
             document.querySelectorAll('.nav-link').forEach(link => {
                 link.addEventListener('click', (e) => {
@@ -1130,6 +1143,7 @@
             scrollBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
         }
 
+        // ============ دوال مساعدة ============
         function parseTimeToSeconds(timeStr) {
             if (!timeStr || timeStr === '-') return 0;
             const match = timeStr.match(/(\d+)h\s*(\d+)'\s*(\d+)''/);
