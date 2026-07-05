@@ -1,28 +1,41 @@
 {
   "metadata": {
     "race": "Tour de France 2026",
-    "last_updated": "2026-07-04T15:30:00",
-    "source": "manual"
+    "edition": 113,
+    "last_updated": "2026-07-05T10:00:00",
+    "source": "manual_entry",
+    "version": "2.1",
+    "note": "يتم تحديث البيانات يدوياً من الموقع الرسمي"
   },
-  "stage": {
-    "number": 1,
-    "date": "2026-07-04",
-    "start": "Barcelona",
-    "end": "Barcelona",
-    "distance_km": 19.7,
-    "type": "TTT",
-    "status": "completed"
-  },
-  "results": [
-    {
-      "rank": 1,
-      "rider": "UAE Team Emirates XRG",
-      "team": "UAE Team Emirates XRG",
-      "country": "UAE",
-      "time": "0:22:15",
-      "gap": "0:00"
+  "stages": {
+    "1": {
+      "number": 1,
+      "date": "2026-07-04",
+      "start": "Barcelona",
+      "end": "Barcelona",
+      "distance_km": 19.7,
+      "type": "TTT",
+      "status": "completed",
+      "weather": "مشمس، 24°C",
+      "results": [
+        {"rank": 1, "rider": "Tadej Pogačar", "team": "UAE Team Emirates XRG", "country": "SLO", "time": "0:22:15", "gap": "0:00"},
+        {"rank": 2, "rider": "Jonas Vingegaard", "team": "Visma–Lease a Bike", "country": "DEN", "time": "0:22:23", "gap": "+0:08"},
+        {"rank": 3, "rider": "Remco Evenepoel", "team": "Red Bull–Bora–Hansgrohe", "country": "BEL", "time": "0:22:29", "gap": "+0:14"},
+        {"rank": 4, "rider": "Matteo Jorgenson", "team": "Visma–Lease a Bike", "country": "USA", "time": "0:22:35", "gap": "+0:20"},
+        {"rank": 5, "rider": "Brandon McNulty", "team": "UAE Team Emirates XRG", "country": "USA", "time": "0:22:41", "gap": "+0:26"},
+        {"rank": 6, "rider": "Juan Ayuso", "team": "Lidl-Trek", "country": "ESP", "time": "0:22:44", "gap": "+0:29"},
+        {"rank": 7, "rider": "Carlos Rodríguez", "team": "INEOS Grenadiers", "country": "ESP", "time": "0:22:48", "gap": "+0:33"},
+        {"rank": 8, "rider": "João Almeida", "team": "UAE Team Emirates XRG", "country": "POR", "time": "0:22:52", "gap": "+0:37"},
+        {"rank": 9, "rider": "Mattias Skjelmose", "team": "Lidl-Trek", "country": "DEN", "time": "0:22:56", "gap": "+0:41"},
+        {"rank": 10, "rider": "Ben Healy", "team": "EF Education-EasyPost", "country": "IRL", "time": "0:23:02", "gap": "+0:47"}
+      ],
+      "jerseys": {
+        "yellow": {"name": "Tadej Pogačar", "team": "UAE Team Emirates XRG", "reason": "المتصدر العام"},
+        "green": {"name": "Tadej Pogačar", "team": "UAE Team Emirates XRG", "reason": "نقاط السبرنت"},
+        "polka_dot": {"name": "Jonas Vingegaard", "team": "Visma–Lease a Bike", "reason": "متسلق الجبال"},
+        "white": {"name": "Remco Evenepoel", "team": "Red Bull–Bora–Hansgrohe", "reason": "أفضل شاب"}
+      }
     }
-  ],
-  "statistics": {},
-  "jerseys": {}
+  },
+  "current_stage": 1
 }
