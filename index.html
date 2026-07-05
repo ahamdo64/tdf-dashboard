@@ -337,6 +337,7 @@ updateCountdown();
 setInterval(updateCountdown, 1000);
 </script>
   <!-- ============ الزر العائم ============ -->
+<!-- ============ الزر العائم ============ -->
 <button id="fabButton" class="fab" onclick="openResultsModal()" title="عرض نتائج المرحلة">
   <span class="fab-icon">📊</span>
   <span class="fab-pulse"></span>
@@ -347,26 +348,61 @@ setInterval(updateCountdown, 1000);
   <div class="modal-content">
     <div class="modal-header">
       <h2>📊 نتائج المرحلة - الاستعلام المباشر</h2>
-      <button class="modal-close" onclick="closeResultsModal()">✕</button>
+      <button class="modal-close" onclick="closeResultsModal()"></button>
     </div>
     
-    <div class="modal-tabs">
+    <!-- اختيار المرحلة -->
+    <div class="stage-selector">
+      <label for="stageSelect">🏁 اختر المرحلة:</label>
+      <select id="stageSelect" onchange="loadStageData()">
+        <option value="">-- اختر مرحلة --</option>
+        <option value="1">المرحلة 1 - برشلونة (TTT)</option>
+        <option value="2">المرحلة 2 - تاراغونا → برشلونة</option>
+        <option value="3">المرحلة 3 - غرانوليرس → ليز أنغل</option>
+        <option value="4">المرحلة 4 - كاركاسون → فوا</option>
+        <option value="5">المرحلة 5 - لانميزان → بو</option>
+        <option value="6">المرحلة 6 - بو → غافارني</option>
+        <option value="7">المرحلة 7 - هاغيتماو → بوردو</option>
+        <option value="8">المرحلة 8 - بيريغو → بيرجراك</option>
+        <option value="9">المرحلة 9 - مالمور → أوسيل</option>
+        <option value="10">المرحلة 10 - أورياك → لي ليوران</option>
+        <option value="11">المرحلة 11 - فيشي → نيفير</option>
+        <option value="12">المرحلة 12 - ماني كور → شالون</option>
+        <option value="13">المرحلة 13 - دول → بلفور</option>
+        <option value="14">المرحلة 14 - ميلوز → لو ماركشتاين</option>
+        <option value="15">المرحلة 15 - شامبانيول → بلاتو دو سوليزون</option>
+        <option value="16">المرحلة 16 - إيفيان → تونون (ITT)</option>
+        <option value="17">المرحلة 17 - شامبيري → فوارون</option>
+        <option value="18">المرحلة 18 - فوارون → أورسيير</option>
+        <option value="19">المرحلة 19 - غاب → ألب دواز</option>
+        <option value="20">المرحلة 20 - لو بورغ → ألب دواز</option>
+        <option value="21">المرحلة 21 - تويري → باريس</option>
+      </select>
+      <div id="stageStatus" class="stage-status"></div>
+    </div>
+
+    <div class="modal-tabs" id="modalTabs" style="display:none;">
       <button class="modal-tab active" onclick="showModalTab('overview',this)">🏁 نظرة عامة</button>
-      <button class="modal-tab" onclick="showModalTab('results',this)">🏆 النتائج</button>
+      <button class="modal-tab" onclick="showModalTab('results',this)"> النتائج</button>
       <button class="modal-tab" onclick="showModalTab('stats',this)">📈 الإحصائيات</button>
       <button class="modal-tab" onclick="showModalTab('jerseys',this)">👕 القمصان</button>
-      <button class="modal-tab" onclick="showModalTab('raw',this)">🔧 JSON الخام</button>
+      <button class="modal-tab" onclick="showModalTab('raw',this)"> JSON الخام</button>
     </div>
 
     <!-- تبويب: نظرة عامة -->
     <div id="tab-overview" class="modal-tab-content active">
-      <div id="overview-data"></div>
+      <div id="overview-data">
+        <div class="welcome-message">
+          <h3>👋 مرحباً بك في استعلام نتائج تور دو فرانس 2026</h3>
+          <p>يرجى اختيار المرحلة من القائمة أعلاه لعرض النتائج</p>
+        </div>
+      </div>
     </div>
 
     <!-- تبويب: النتائج -->
     <div id="tab-results" class="modal-tab-content">
       <div class="search-bar">
-        <input type="text" id="resultsSearch" placeholder="🔍 ابحث عن دراج أو فريق..." oninput="filterResults()">
+        <input type="text" id="resultsSearch" placeholder=" ابحث عن دراج أو فريق..." oninput="filterResults()">
         <select id="topFilter" onchange="filterResults()">
           <option value="all">جميع الدراجين</option>
           <option value="10">أفضل 10</option>
@@ -406,7 +442,6 @@ setInterval(updateCountdown, 1000);
       <div class="json-actions">
         <button onclick="downloadJson()">⬇️ تحميل JSON</button>
         <button onclick="copyJson()">📋 نسخ</button>
-        <button onclick="refreshData()">🔄 تحديث</button>
       </div>
       <pre id="rawJson" class="json-view"></pre>
     </div>
@@ -418,7 +453,7 @@ setInterval(updateCountdown, 1000);
   </div>
 </div>
 
-<!-- ============ أنماط CSS للزر العائم والـ Modal ============ -->
+<!-- ============ أنماط CSS ============ -->
 <style>
 /* الزر العائم */
 .fab {
@@ -512,6 +547,63 @@ setInterval(updateCountdown, 1000);
 }
 .modal-close:hover { background: rgba(0, 0, 0, 0.4); transform: rotate(90deg); }
 
+/* اختيار المرحلة */
+.stage-selector {
+  padding: 20px 25px;
+  background: rgba(0, 0, 0, 0.3);
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  flex-wrap: wrap;
+  border-bottom: 2px solid rgba(255, 215, 0, 0.2);
+}
+.stage-selector label {
+  font-size: 1.1em;
+  font-weight: bold;
+  color: #FFD700;
+}
+.stage-selector select {
+  flex: 1;
+  min-width: 250px;
+  padding: 12px 15px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 2px solid rgba(255, 215, 0, 0.3);
+  color: #fff;
+  border-radius: 10px;
+  font-size: 1em;
+  cursor: pointer;
+}
+.stage-selector select:focus {
+  outline: none;
+  border-color: #FFD700;
+  background: rgba(255, 215, 0, 0.05);
+}
+.stage-selector select option {
+  background: #1a1a2e;
+  color: #fff;
+}
+.stage-status {
+  padding: 8px 15px;
+  border-radius: 20px;
+  font-size: 0.9em;
+  font-weight: bold;
+}
+.stage-status.loading {
+  background: rgba(33, 150, 243, 0.2);
+  color: #2196F3;
+  border: 1px solid #2196F3;
+}
+.stage-status.success {
+  background: rgba(76, 175, 80, 0.2);
+  color: #4CAF50;
+  border: 1px solid #4CAF50;
+}
+.stage-status.error {
+  background: rgba(244, 67, 54, 0.2);
+  color: #f44336;
+  border: 1px solid #f44336;
+}
+
 /* التبويبات */
 .modal-tabs {
   display: flex;
@@ -547,6 +639,24 @@ setInterval(updateCountdown, 1000);
   color: #fff;
 }
 .modal-tab-content.active { display: block; }
+
+/* رسالة الترحيب */
+.welcome-message {
+  text-align: center;
+  padding: 40px 20px;
+  background: rgba(255, 215, 0, 0.05);
+  border: 2px dashed rgba(255, 215, 0, 0.3);
+  border-radius: 15px;
+}
+.welcome-message h3 {
+  color: #FFD700;
+  font-size: 1.5em;
+  margin-bottom: 15px;
+}
+.welcome-message p {
+  font-size: 1.1em;
+  opacity: 0.8;
+}
 
 /* شريط البحث */
 .search-bar {
@@ -601,7 +711,7 @@ setInterval(updateCountdown, 1000);
 #resultsTable tr.top-3 { background: linear-gradient(90deg, rgba(255, 215, 0, 0.15), transparent); }
 #resultsTable tr.top-3 td:first-child { font-weight: bold; color: #FFD700; }
 
-/* بطاقات الإحصائيات والقمصان */
+/* بطاقات */
 .info-card {
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 215, 0, 0.2);
@@ -728,13 +838,13 @@ setInterval(updateCountdown, 1000);
 }
 .error-message h3 { color: #f44336; margin-bottom: 10px; }
 
-/* الاستجابة للشاشات الصغيرة */
 @media (max-width: 768px) {
   .fab { bottom: 20px; left: 20px; width: 55px; height: 55px; font-size: 1.5em; }
   .modal-content { border-radius: 15px; max-height: 95vh; }
   .modal-header h2 { font-size: 1.1em; }
   .modal-tab { padding: 8px 14px; font-size: 0.85em; }
   .modal-tab-content { padding: 15px; }
+  .stage-selector { flex-direction: column; align-items: stretch; }
 }
 </style>
 
@@ -742,13 +852,22 @@ setInterval(updateCountdown, 1000);
 <script>
 // ============ البيانات ============
 let stageData = null;
+let currentStage = null;
 let currentSort = { field: 'rank', direction: 'asc' };
 
 // ============ فتح وإغلاق Modal ============
 function openResultsModal() {
-  loadJsonData();
   document.getElementById('resultsModal').classList.add('show');
   document.body.style.overflow = 'hidden';
+  // إعادة تعيين
+  document.getElementById('stageSelect').value = '';
+  document.getElementById('modalTabs').style.display = 'none';
+  document.getElementById('overview-data').innerHTML = `
+    <div class="welcome-message">
+      <h3>👋 مرحباً بك في استعلام نتائج تور دو فرانس 2026</h3>
+      <p>يرجى اختيار المرحلة من القائمة أعلاه لعرض النتائج</p>
+    </div>
+  `;
 }
 
 function closeResultsModal() {
@@ -761,50 +880,105 @@ document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape') closeResultsModal();
 });
 
+// ============ تحميل بيانات المرحلة ============
+async function loadStageData() {
+  const stageNum = document.getElementById('stageSelect').value;
+  const statusDiv = document.getElementById('stageStatus');
+  
+  if (!stageNum) {
+    document.getElementById('modalTabs').style.display = 'none';
+    document.getElementById('overview-data').innerHTML = `
+      <div class="welcome-message">
+        <h3>👋 مرحباً بك في استعلام نتائج تور دو فرانس 2026</h3>
+        <p>يرجى اختيار المرحلة من القائمة أعلاه لعرض النتائج</p>
+      </div>
+    `;
+    return;
+  }
+  
+  currentStage = parseInt(stageNum);
+  
+  // إظهار حالة التحميل
+  statusDiv.className = 'stage-status loading';
+  statusDiv.textContent = '⏳ جاري التحميل...';
+  document.getElementById('modalTabs').style.display = 'none';
+  
+  try {
+    const response = await fetch(`results${stageNum}.json?t=${Date.now()}`);
+    
+    if (!response.ok) {
+      if (response.status === 404) {
+        throw new Error(`ملف results${stageNum}.json غير موجود على GitHub. يرجى رفع الملف أولاً.`);
+      }
+      throw new Error(`خطأ في الخادم: ${response.status}`);
+    }
+    
+    stageData = await response.json();
+    
+    // التحقق من وجود خطأ في البيانات
+    if (stageData.metadata?.error) {
+      throw new Error(stageData.metadata.error_message || 'بيانات غير متاحة');
+    }
+    
+    // التحقق من أن النتائج موجودة
+    if (!stageData.results || stageData.results.length === 0) {
+      throw new Error('لا توجد نتائج في هذا الملف');
+    }
+    
+    // نجاح
+    statusDiv.className = 'stage-status success';
+    statusDiv.textContent = `✅ المرحلة ${stageNum} - ${stageData.results.length} دراج`;
+    
+    // عرض التبويبات
+    document.getElementById('modalTabs').style.display = 'flex';
+    
+    // عرض البيانات
+    renderAllData();
+    
+  } catch (error) {
+    console.error('خطأ:', error);
+    statusDiv.className = 'stage-status error';
+    statusDiv.textContent = '❌ فشل التحميل';
+    
+    showErrorStage(error.message);
+  }
+}
+
+// ============ عرض رسالة خطأ ============
+function showErrorStage(message) {
+  const errorHTML = `
+    <div class="error-message">
+      <h3>⚠️ لم يتم العثور على بيانات المرحلة</h3>
+      <p><strong>السبب:</strong> ${message}</p>
+      <p style="margin-top:15px;">🔧 <strong>الحل:</strong></p>
+      <ol style="text-align:right; max-width:500px; margin:10px auto; line-height:2;">
+        <li>تأكد من رفع ملف <code style="background:rgba(255,215,0,0.2);padding:2px 6px;border-radius:4px;">results${currentStage || '?'}.json</code> على GitHub</li>
+        <li>الملف يجب أن يكون في نفس مجلد <code style="background:rgba(255,215,0,0.2);padding:2px 6px;border-radius:4px;">index.html</code></li>
+        <li>انتظر دقيقة ثم اضغط "إعادة المحاولة"</li>
+      </ol>
+      <button onclick="loadStageData()" style="margin-top:15px; padding:10px 25px; background:#FFD700; color:#1a1a2e; border:none; border-radius:20px; cursor:pointer; font-weight:bold;">🔄 إعادة المحاولة</button>
+    </div>
+  `;
+  
+  ['overview-data', 'stats-data', 'jerseys-data'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.innerHTML = errorHTML;
+  });
+  
+  document.getElementById('resultsBody').innerHTML = `
+    <tr><td colspan="6" style="text-align:center;padding:40px;">${errorHTML}</td></tr>
+  `;
+  
+  document.getElementById('rawJson').textContent = '{"error": "' + message + '"}';
+  document.getElementById('lastUpdate').textContent = 'آخر تحديث: غير متوفر';
+}
+
 // ============ التبويبات ============
 function showModalTab(tabName, btn) {
   document.querySelectorAll('.modal-tab-content').forEach(el => el.classList.remove('active'));
   document.querySelectorAll('.modal-tab').forEach(el => el.classList.remove('active'));
   document.getElementById('tab-' + tabName).classList.add('active');
   btn.classList.add('active');
-}
-
-// ============ تحميل JSON ============
-async function loadJsonData() {
-  try {
-    const response = await fetch('results.json?t=' + Date.now()); // تجنب الكاش
-    if (!response.ok) throw new Error('ملف results.json غير موجود');
-    stageData = await response.json();
-    renderAllData();
-  } catch (error) {
-    console.error('خطأ:', error);
-    showError(error.message);
-  }
-}
-
-// ============ عرض رسالة خطأ ============
-function showError(message) {
-  const errorHTML = `
-    <div class="error-message">
-      <h3>⚠️ لم يتم العثور على بيانات</h3>
-      <p><strong>السبب:</strong> ${message}</p>
-      <p>🔧 <strong>الحل:</strong></p>
-      <ol style="text-align:right; max-width:500px; margin:10px auto;">
-        <li>شغّل سكربت Python: <code>python fetch_tdf.py --demo</code></li>
-        <li>تأكد من وجود ملف <code>results.json</code> في نفس مجلد <code>index.html</code></li>
-        <li>إذا كنت على GitHub، تأكد من رفع ملف <code>results.json</code></li>
-      </ol>
-      <button onclick="refreshData()" style="margin-top:15px; padding:10px 25px; background:#FFD700; color:#1a1a2e; border:none; border-radius:20px; cursor:pointer; font-weight:bold;">🔄 إعادة المحاولة</button>
-    </div>
-  `;
-  ['overview-data', 'resultsBody', 'stats-data', 'jerseys-data'].forEach(id => {
-    const el = document.getElementById(id);
-    if (el) {
-      if (id === 'resultsBody') el.innerHTML = `<tr><td colspan="6">${errorHTML}</td></tr>`;
-      else el.innerHTML = errorHTML;
-    }
-  });
-  document.getElementById('rawJson').textContent = '{"error": "' + message + '"}';
 }
 
 // ============ عرض جميع البيانات ============
@@ -816,16 +990,16 @@ function renderAllData() {
   renderJerseys();
   document.getElementById('rawJson').textContent = JSON.stringify(stageData, null, 2);
   document.getElementById('lastUpdate').textContent = 
-    'آخر تحديث: ' + new Date(stageData.metadata?.last_updated).toLocaleString('ar-EG');
+    'آخر تحديث: ' + new Date(stageData.metadata?.last_updated || Date.now()).toLocaleString('ar-EG');
 }
 
 // ============ نظرة عامة ============
 function renderOverview() {
   const s = stageData.stage;
-  const stats = stageData.statistics;
+  const stats = stageData.statistics || {};
   const html = `
     <div class="info-card">
-      <h3>🏁 معلومات المرحلة ${s.number}</h3>
+      <h3> معلومات المرحلة ${s.number}</h3>
       <div class="info-grid">
         <div class="info-item"><div class="label">📅 التاريخ</div><div class="value">${s.date}</div></div>
         <div class="info-item"><div class="label">📍 المسار</div><div class="value">${s.start} → ${s.end}</div></div>
@@ -839,11 +1013,11 @@ function renderOverview() {
       <h3>📊 ملخص سريع</h3>
       <div class="info-grid">
         <div class="info-item"><div class="label">🏆 الفائز</div><div class="value">${stageData.results[0]?.rider || '-'}</div></div>
-        <div class="info-item"><div class="label">⚡ السرعة المتوسطة</div><div class="value">${stats.average_speed_kmh} كم/س</div></div>
-        <div class="info-item"><div class="label">👥 المشاركون</div><div class="value">${stats.total_participants}</div></div>
-        <div class="info-item"><div class="label">✅ أنهوا السباق</div><div class="value">${stats.finished}</div></div>
-        <div class="info-item"><div class="label">🌟 أصغر دراج</div><div class="value">${stats.youngest_rider?.name} (${stats.youngest_rider?.age})</div></div>
-        <div class="info-item"><div class="label">👴 أكبر دراج</div><div class="value">${stats.oldest_rider?.name} (${stats.oldest_rider?.age})</div></div>
+        <div class="info-item"><div class="label">⚡ السرعة المتوسطة</div><div class="value">${stats.average_speed_kmh || '-'} كم/س</div></div>
+        <div class="info-item"><div class="label">👥 المشاركون</div><div class="value">${stats.total_participants || stageData.results.length}</div></div>
+        <div class="info-item"><div class="label">✅ أنهوا السباق</div><div class="value">${stats.finished || stageData.results.length}</div></div>
+        <div class="info-item"><div class="label">🌟 أصغر دراج</div><div class="value">${stats.youngest_rider?.name || '-'} (${stats.youngest_rider?.age || '-'})</div></div>
+        <div class="info-item"><div class="label">👴 أكبر دراج</div><div class="value">${stats.oldest_rider?.name || '-'} (${stats.oldest_rider?.age || '-'})</div></div>
       </div>
     </div>
   `;
@@ -899,7 +1073,7 @@ function renderResultsTable() {
 }
 
 function getCountryFlag(code) {
-  const flags = {SLO:'🇸🇮',DEN:'🇩🇰',BEL:'🇧🇪',USA:'🇺🇸',ESP:'🇪🇸',POR:'🇵🇹',IRL:'🇮🇪',FRA:'🇫🇷',ITA:'🇮🇹',GER:'🇩🇪',NED:'🇳🇱',GBR:'🇬🇧',AUS:'🇦🇺',COL:'🇨🇴',SUI:'🇨🇭',NOR:'🇳🇴',POL:'🇵🇱',AUT:'🇦🇹'};
+  const flags = {SLO:'🇮',DEN:'🇩🇰',BEL:'🇧🇪',USA:'🇺🇸',ESP:'🇪🇸',POR:'🇹',IRL:'🇪',FRA:'🇷',ITA:'🇮',GER:'🇩',NED:'🇳🇱',GBR:'🇬🇧',AUS:'🇦🇺',COL:'🇴',SUI:'🇭',NOR:'🇴',POL:'🇵🇱',AUT:'🇦🇹',MEX:'🇲🇽',ECU:'🇪🇨',CZE:'🇿',CAN:'🇨🇦',NZL:'🇳🇿'};
   return flags[code] || '';
 }
 
@@ -916,8 +1090,8 @@ function sortResults(field) {
 
 // ============ الإحصائيات ============
 function renderStatistics() {
-  const stats = stageData.statistics;
-  const results = stageData.results;
+  const stats = stageData.statistics || {};
+  const results = stageData.results || [];
   const teamsCount = {};
   results.forEach(r => { teamsCount[r.team] = (teamsCount[r.team] || 0) + 1; });
   const topTeams = Object.entries(teamsCount).sort((a,b) => b[1] - a[1]).slice(0, 5);
@@ -926,29 +1100,22 @@ function renderStatistics() {
     <div class="info-card">
       <h3>📊 إحصائيات عامة</h3>
       <div class="info-grid">
-        <div class="info-item"><div class="label">👥 إجمالي المشاركين</div><div class="value">${stats.total_participants}</div></div>
-        <div class="info-item"><div class="label">✅ أنهوا</div><div class="value">${stats.finished}</div></div>
-        <div class="info-item"><div class="label">❌ انسحبوا (DNF)</div><div class="value">${stats.dnf}</div></div>
-        <div class="info-item"><div class="label">⚡ سرعة متوسطة</div><div class="value">${stats.average_speed_kmh} كم/س</div></div>
-        <div class="info-item"><div class="label">🚀 أعلى سرعة</div><div class="value">${stats.fastest_avg_kmh} كم/س</div></div>
+        <div class="info-item"><div class="label">👥 إجمالي المشاركين</div><div class="value">${stats.total_participants || results.length}</div></div>
+        <div class="info-item"><div class="label">✅ أنهوا</div><div class="value">${stats.finished || results.length}</div></div>
+        <div class="info-item"><div class="label"> انسحبوا (DNF)</div><div class="value">${stats.dnf || 0}</div></div>
+        <div class="info-item"><div class="label">⚡ سرعة متوسطة</div><div class="value">${stats.average_speed_kmh || '-'} كم/س</div></div>
+        <div class="info-item"><div class="label">🚀 أعلى سرعة</div><div class="value">${stats.fastest_avg_kmh || '-'} كم/س</div></div>
       </div>
     </div>
     <div class="info-card">
-      <h3>👥 الفرق الأكثر تمثيلاً في النتائج</h3>
+      <h3>👥 الفرق الأكثر تمثيلاً</h3>
       <div class="info-grid">
         ${topTeams.map(([team, count], i) => `
           <div class="info-item">
-            <div class="label">${i === 0 ? '🥇' : i === 1 ? '🥈' : i === 2 ? '🥉' : '•'} ${team}</div>
+            <div class="label">${i === 0 ? '' : i === 1 ? '' : i === 2 ? '🥉' : '•'} ${team}</div>
             <div class="value">${count} دراج</div>
           </div>
         `).join('')}
-      </div>
-    </div>
-    <div class="info-card">
-      <h3>🎯 معلومات العمر</h3>
-      <div class="info-grid">
-        <div class="info-item"><div class="label">🌟 أصغر دراج</div><div class="value">${stats.youngest_rider?.name || '-'} (${stats.youngest_rider?.age || '-'} سنة)</div></div>
-        <div class="info-item"><div class="label">👴 أكبر دراج</div><div class="value">${stats.oldest_rider?.name || '-'} (${stats.oldest_rider?.age || '-'} سنة)</div></div>
       </div>
     </div>
   `;
@@ -957,10 +1124,10 @@ function renderStatistics() {
 
 // ============ القمصان ============
 function renderJerseys() {
-  const jerseys = stageData.jerseys;
+  const jerseys = stageData.jerseys || {};
   const html = `
     <div class="jersey-card jersey-yellow">
-      <div class="jersey-icon" style="background:#FFD700;">🏆</div>
+      <div class="jersey-icon" style="background:#FFD700;"></div>
       <div>
         <h3 style="color:#FFD700;">القميص الأصفر - المتصدر العام</h3>
         <p><strong>${jerseys.yellow?.name || '-'}</strong></p>
@@ -1002,7 +1169,7 @@ function downloadJson() {
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
   a.href = url;
-  a.download = `tdf2026_stage${stageData.stage.number}.json`;
+  a.download = `results${currentStage}.json`;
   a.click();
   URL.revokeObjectURL(url);
 }
@@ -1013,16 +1180,6 @@ function copyJson() {
     .then(() => alert('✅ تم نسخ JSON إلى الحافظة'))
     .catch(() => alert('❌ فشل النسخ'));
 }
-
-function refreshData() {
-  document.getElementById('rawJson').textContent = 'جاري التحديث...';
-  loadJsonData();
-}
-
-// تحميل تلقائي عند فتح الصفحة
-document.addEventListener('DOMContentLoaded', () => {
-  // تحميل مسبق للبيانات (اختياري)
-});
 </script>
-</body>
+</body>  
 </html>
