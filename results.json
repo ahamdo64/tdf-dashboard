@@ -1,246 +1,28 @@
 {
   "metadata": {
     "race": "Tour de France 2026",
-    "edition": 113,
-    "last_updated": "2026-07-05T11:56:49.474544",
-    "source": "procyclingstats.com",
-    "version": "2.0"
+    "last_updated": "2026-07-04T15:30:00",
+    "source": "manual"
   },
   "stage": {
     "number": 1,
-    "date": "2026-07-05",
+    "date": "2026-07-04",
+    "start": "Barcelona",
+    "end": "Barcelona",
+    "distance_km": 19.7,
+    "type": "TTT",
     "status": "completed"
   },
   "results": [
     {
       "rank": 1,
-      "rider": "04/07",
-      "team": "Saturday",
-      "country": "",
-      "time": "Stage 1 (TTT) | Barcelona - Barcelona",
-      "gap": "19.6"
-    },
-    {
-      "rank": 2,
-      "rider": "05/07",
-      "team": "Sunday",
-      "country": "",
-      "time": "Stage 2 | Tarragona - Barcelona",
-      "gap": "168.5"
-    },
-    {
-      "rank": 3,
-      "rider": "06/07",
-      "team": "Monday",
-      "country": "",
-      "time": "Stage 3 | Granollers - Les Angles",
-      "gap": "195.9"
-    },
-    {
-      "rank": 4,
-      "rider": "07/07",
-      "team": "Tuesday",
-      "country": "",
-      "time": "Stage 4 | Carcassonne - Foix",
-      "gap": "181.9"
-    },
-    {
-      "rank": 5,
-      "rider": "08/07",
-      "team": "Wednesday",
-      "country": "",
-      "time": "Stage 5 | Lannemezan - Pau",
-      "gap": "158.3"
-    },
-    {
-      "rank": 6,
-      "rider": "09/07",
-      "team": "Thursday",
-      "country": "",
-      "time": "Stage 6 | Pau - Gavarnie-Gèdre",
-      "gap": "186.2"
-    },
-    {
-      "rank": 7,
-      "rider": "10/07",
-      "team": "Friday",
-      "country": "",
-      "time": "Stage 7 | Hagetmau - Bordeaux",
-      "gap": "175.1"
-    },
-    {
-      "rank": 8,
-      "rider": "11/07",
-      "team": "Saturday",
-      "country": "",
-      "time": "Stage 8 | Périgueux - Bergerac",
-      "gap": "180.4"
-    },
-    {
-      "rank": 9,
-      "rider": "12/07",
-      "team": "Sunday",
-      "country": "",
-      "time": "Stage 9 | Malemort - Ussel",
-      "gap": "185.5"
-    },
-    {
-      "rank": 10,
-      "rider": "13/07",
-      "team": "",
-      "country": "",
-      "time": "Restday",
-      "gap": ""
-    },
-    {
-      "rank": 11,
-      "rider": "14/07",
-      "team": "Tuesday",
-      "country": "",
-      "time": "Stage 10 | Aurillac - Le Lioran",
-      "gap": "166.6"
-    },
-    {
-      "rank": 12,
-      "rider": "15/07",
-      "team": "Wednesday",
-      "country": "",
-      "time": "Stage 11 | Vichy - Nevers",
-      "gap": "161.3"
-    },
-    {
-      "rank": 13,
-      "rider": "16/07",
-      "team": "Thursday",
-      "country": "",
-      "time": "Stage 12 | Circuit Nevers Magny-Cours - Chalon-sur-Saône",
-      "gap": "179.1"
-    },
-    {
-      "rank": 14,
-      "rider": "17/07",
-      "team": "Friday",
-      "country": "",
-      "time": "Stage 13 | Dole - Belfort",
-      "gap": "205.8"
-    },
-    {
-      "rank": 15,
-      "rider": "18/07",
-      "team": "Saturday",
-      "country": "",
-      "time": "Stage 14 | Mulhouse - Le Markstein",
-      "gap": "155.3"
-    },
-    {
-      "rank": 16,
-      "rider": "19/07",
-      "team": "Sunday",
-      "country": "",
-      "time": "Stage 15 | Champagnole - Plateau de Solaison",
-      "gap": "183.9"
-    },
-    {
-      "rank": 17,
-      "rider": "20/07",
-      "team": "",
-      "country": "",
-      "time": "Restday",
-      "gap": ""
-    },
-    {
-      "rank": 18,
-      "rider": "21/07",
-      "team": "Tuesday",
-      "country": "",
-      "time": "Stage 16 (ITT) | Évian-les-Bains - Thonon-les-Bains",
-      "gap": "26.1"
-    },
-    {
-      "rank": 19,
-      "rider": "22/07",
-      "team": "Wednesday",
-      "country": "",
-      "time": "Stage 17 | Chambéry - Voiron",
-      "gap": "174.7"
-    },
-    {
-      "rank": 20,
-      "rider": "23/07",
-      "team": "Thursday",
-      "country": "",
-      "time": "Stage 18 | Voiron - Orcières-Merlette",
-      "gap": "185.2"
-    },
-    {
-      "rank": 21,
-      "rider": "24/07",
-      "team": "Friday",
-      "country": "",
-      "time": "Stage 19 | Gap - Alpe d'Huez",
-      "gap": "127.9"
-    },
-    {
-      "rank": 22,
-      "rider": "25/07",
-      "team": "Saturday",
-      "country": "",
-      "time": "Stage 20 | Le Bourg d'Oisans - Alpe d'Huez",
-      "gap": "170.9"
-    },
-    {
-      "rank": 23,
-      "rider": "26/07",
-      "team": "Sunday",
-      "country": "",
-      "time": "Stage 21 | Thoiry - Paris",
-      "gap": "133"
-    },
-    {
-      "rank": 24,
-      "rider": "",
-      "team": "",
-      "country": "",
-      "time": "",
-      "gap": "3321.2"
+      "rider": "UAE Team Emirates XRG",
+      "team": "UAE Team Emirates XRG",
+      "country": "UAE",
+      "time": "0:22:15",
+      "gap": "0:00"
     }
   ],
-  "statistics": {
-    "total_participants": 24,
-    "finished": 24,
-    "dnf": 0,
-    "average_speed_kmh": 0.0,
-    "fastest_avg_kmh": 0.0,
-    "youngest_rider": {
-      "name": "-",
-      "age": 0
-    },
-    "oldest_rider": {
-      "name": "-",
-      "age": 0
-    },
-    "top_teams": [
-      {
-        "name": "Saturday",
-        "riders": 4
-      },
-      {
-        "name": "Sunday",
-        "riders": 4
-      },
-      {
-        "name": "Tuesday",
-        "riders": 3
-      },
-      {
-        "name": "Wednesday",
-        "riders": 3
-      },
-      {
-        "name": "Thursday",
-        "riders": 3
-      }
-    ]
-  },
+  "statistics": {},
   "jerseys": {}
 }
