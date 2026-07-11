@@ -1,0 +1,134 @@
+{
+  "metadata": {
+    "race": "Tour de France 2026",
+    "edition": 113,
+    "last_updated": "2026-07-11T17:30:00",
+    "source": "procyclingstats.com",
+    "version": "2.1"
+  },
+  "stage": {
+    "number": 8,
+    "date": "2026-07-11",
+    "start": "Périgueux",
+    "end": "Bergerac",
+    "distance_km": 180.4,
+    "type": "flat",
+    "status": "completed",
+    "weather": "مشمس وحار جداً، 37°C",
+    "elevation_m": 1353,
+    "average_speed_kmh": 46.488,
+    "start_time": "13:25",
+    "won_how": "Sprint of large group",
+    "time_limit": "4:16:07 (+0:23:17)",
+    "profile_score": 30,
+    "gradient_final_km": 0.0,
+    "climbs": []
+  },
+  "results": [
+    {"rank": 1, "rider": "Tim Merlier", "team": "Soudal Quick-Step", "country": "BEL", "time": "3:52:50", "gap": "0:00", "age": 31, "points": 50, "bonus": "10\"", "gc_rank": 2},
+    {"rank": 2, "rider": "Biniam Girmay", "team": "NSN Cycling Team", "country": "ERI", "time": "3:52:50", "gap": "0:00", "age": 26, "points": 30, "bonus": "6\"", "gc_rank": 3},
+    {"rank": 3, "rider": "Olav Kooij", "team": "Decathlon CMA CGM Team", "country": "NED", "time": "3:52:50", "gap": "0:00", "age": 24, "points": 20, "bonus": "4\"", "gc_rank": 6},
+    {"rank": 4, "rider": "Jasper Philipsen", "team": "Alpecin - Premier Tech", "country": "BEL", "time": "3:52:50", "gap": "0:00", "age": 28, "points": 18, "gc_rank": 4},
+    {"rank": 5, "rider": "Pavel Bittner", "team": "Team Picnic PostNL", "country": "CZE", "time": "3:52:50", "gap": "0:00", "age": 24, "points": 16, "gc_rank": 15},
+    {"rank": 6, "rider": "Rick Pluimers", "team": "Tudor Pro Cycling Team", "country": "NED", "time": "3:52:50", "gap": "0:00", "age": 25, "points": 14, "gc_rank": 16},
+    {"rank": 7, "rider": "Pascal Ackermann", "team": "Team Jayco AlUla", "country": "GER", "time": "3:52:50", "gap": "0:00", "age": 32, "points": 12, "gc_rank": 17},
+    {"rank": 8, "rider": "Clément Russo", "team": "Groupama - FDJ United", "country": "FRA", "time": "3:52:50", "gap": "0:00", "age": 31, "points": 10, "gc_rank": 18},
+    {"rank": 9, "rider": "Max Kanter", "team": "XDS Astana Team", "country": "GER", "time": "3:52:50", "gap": "0:00", "age": 27, "points": 8, "gc_rank": 9},
+    {"rank": 10, "rider": "Milan Fretin", "team": "Cofidis", "country": "BEL", "time": "3:52:50", "gap": "0:00", "age": 27, "points": 7, "gc_rank": 19},
+    {"rank": 11, "rider": "Søren Wærenskjold", "team": "Uno-X Mobility", "country": "NOR", "time": "3:52:50", "gap": "0:00", "age": 25, "points": 6, "gc_rank": 11},
+    {"rank": 12, "rider": "Mads Pedersen", "team": "Lidl - Trek", "country": "DEN", "time": "3:52:50", "gap": "0:00", "age": 30, "points": 6, "gc_rank": 13, "jersey": "green"},
+    {"rank": 13, "rider": "Fernando Gaviria", "team": "Caja Rural - Seguros RGA", "country": "COL", "time": "3:52:50", "gap": "0:00", "age": 31, "points": 4, "gc_rank": 20},
+    {"rank": 14, "rider": "Dorian Godon", "team": "Netcompany INEOS", "country": "FRA", "time": "3:52:50", "gap": "0:00", "age": 29, "points": 2, "gc_rank": 21},
+    {"rank": 15, "rider": "Anthony Turgis", "team": "TotalEnergies", "country": "FRA", "time": "3:52:50", "gap": "0:00", "age": 30, "points": 1, "gc_rank": 8},
+    {"rank": 16, "rider": "Mathieu van der Poel", "team": "Alpecin - Premier Tech", "country": "NED", "time": "3:52:50", "gap": "0:00", "age": 31, "points": 0, "gc_rank": 22},
+    {"rank": 17, "rider": "Phil Bauhaus", "team": "Bahrain - Victorious", "country": "GER", "time": "3:52:50", "gap": "0:00", "age": 30, "points": 0, "gc_rank": 23},
+    {"rank": 18, "rider": "Jenno Berckmoes", "team": "Lotto Intermarché", "country": "BEL", "time": "3:52:50", "gap": "0:00", "age": 25, "points": 0, "gc_rank": 24},
+    {"rank": 19, "rider": "Fred Wright", "team": "Pinarello Q36.5 Pro Cycling Team", "country": "GBR", "time": "3:52:50", "gap": "0:00", "age": 27, "points": 0, "gc_rank": 25},
+    {"rank": 20, "rider": "Quentin Pacher", "team": "Groupama - FDJ United", "country": "FRA", "time": "3:52:50", "gap": "0:00", "age": 32, "points": 0, "gc_rank": 26},
+    {"rank": 21, "rider": "Anthon Charmig", "team": "Uno-X Mobility", "country": "DEN", "time": "3:52:50", "gap": "0:00", "age": 28, "points": 0, "gc_rank": 27},
+    {"rank": 22, "rider": "Tadej Pogačar", "team": "UAE Team Emirates - XRG", "country": "SLO", "time": "3:52:50", "gap": "0:00", "age": 27, "points": 0, "gc_rank": 1, "jersey": "yellow"},
+    {"rank": 23, "rider": "Jonas Vingegaard", "team": "Team Visma | Lease a Bike", "country": "DEN", "time": "3:52:50", "gap": "0:00", "age": 29, "points": 0, "gc_rank": 2},
+    {"rank": 24, "rider": "Isaac Del Toro", "team": "UAE Team Emirates - XRG", "country": "MEX", "time": "3:52:50", "gap": "0:00", "age": 22, "points": 0, "gc_rank": 3},
+    {"rank": 25, "rider": "Remco Evenepoel", "team": "Red Bull - BORA - hansgrohe", "country": "BEL", "time": "3:52:50", "gap": "0:00", "age": 26, "points": 0, "gc_rank": 4},
+    {"rank": 26, "rider": "Juan Ayuso", "team": "Lidl - Trek", "country": "ESP", "time": "3:52:50", "gap": "0:00", "age": 23, "points": 0, "gc_rank": 5},
+    {"rank": 27, "rider": "Paul Seixas", "team": "Decathlon CMA CGM Team", "country": "FRA", "time": "3:52:50", "gap": "0:00", "age": 19, "points": 0, "gc_rank": 6},
+    {"rank": 28, "rider": "Florian Lipowitz", "team": "Red Bull - BORA - hansgrohe", "country": "GER", "time": "3:52:50", "gap": "0:00", "age": 25, "points": 0, "gc_rank": 7},
+    {"rank": 29, "rider": "Lenny Martinez", "team": "Bahrain - Victorious", "country": "FRA", "time": "3:52:50", "gap": "0:00", "age": 22, "points": 0, "gc_rank": 8, "jersey": "polka_dot"},
+    {"rank": 30, "rider": "Mattias Skjelmose", "team": "Lidl - Trek", "country": "DEN", "time": "3:52:50", "gap": "0:00", "age": 25, "points": 0, "gc_rank": 9}
+  ],
+  "points_classification": [
+    {"rank": 1, "rider": "Mads Pedersen", "team": "Lidl - Trek", "country": "DEN", "points": 228, "jersey": "green"},
+    {"rank": 2, "rider": "Biniam Girmay", "team": "NSN Cycling Team", "country": "ERI", "points": 203},
+    {"rank": 3, "rider": "Jasper Philipsen", "team": "Alpecin - Premier Tech", "country": "BEL", "points": 175},
+    {"rank": 4, "rider": "Max Kanter", "team": "XDS Astana Team", "country": "GER", "points": 172},
+    {"rank": 5, "rider": "Olav Kooij", "team": "Decathlon CMA CGM Team", "country": "NED", "points": 110},
+    {"rank": 6, "rider": "Søren Wærenskjold", "team": "Uno-X Mobility", "country": "NOR", "points": 89},
+    {"rank": 7, "rider": "Anthony Turgis", "team": "TotalEnergies", "country": "FRA", "points": 79},
+    {"rank": 8, "rider": "Tadej Pogačar", "team": "UAE Team Emirates - XRG", "country": "SLO", "points": 75},
+    {"rank": 9, "rider": "Jonas Vingegaard", "team": "Team Visma | Lease a Bike", "country": "DEN", "points": 61},
+    {"rank": 10, "rider": "Quinn Simmons", "team": "Lidl - Trek", "country": "USA", "points": 55}
+  ],
+  "kom_classification": [
+    {"rank": 1, "rider": "Lenny Martinez", "team": "Bahrain - Victorious", "country": "FRA", "points": 16, "jersey": "polka_dot"},
+    {"rank": 2, "rider": "Alex Baudin", "team": "EF Education - EasyPost", "country": "FRA", "points": 13},
+    {"rank": 3, "rider": "Paul Seixas", "team": "Decathlon CMA CGM Team", "country": "FRA", "points": 12},
+    {"rank": 4, "rider": "Valentin Paret-Peintre", "team": "Soudal Quick-Step", "country": "FRA", "points": 10},
+    {"rank": 5, "rider": "Isaac Del Toro", "team": "UAE Team Emirates - XRG", "country": "MEX", "points": 10}
+  ],
+  "youth_classification": [
+    {"rank": 1, "rider": "Mathias Vacek", "team": "Lidl - Trek", "country": "CZE", "time": "28:56:17", "gap": "0:00", "age": 24, "jersey": "white"},
+    {"rank": 2, "rider": "Isaac Del Toro", "team": "UAE Team Emirates - XRG", "country": "MEX", "time": "28:52:34", "gap": "+3:27", "age": 22},
+    {"rank": 3, "rider": "Paul Seixas", "team": "Decathlon CMA CGM Team", "country": "FRA", "time": "28:53:02", "gap": "+3:55", "age": 19},
+    {"rank": 4, "rider": "Florian Lipowitz", "team": "Red Bull - BORA - hansgrohe", "country": "GER", "time": "28:53:07", "gap": "+4:00", "age": 25},
+    {"rank": 5, "rider": "Lenny Martinez", "team": "Bahrain - Victorious", "country": "FRA", "time": "28:53:28", "gap": "+4:21", "age": 22}
+  ],
+  "teams_classification": [
+    {"rank": 1, "team": "Lidl - Trek", "class": "WT", "time": "86:16:50"},
+    {"rank": 2, "team": "Red Bull - BORA - hansgrohe", "class": "WT", "time": "+27:01"},
+    {"rank": 3, "team": "UAE Team Emirates - XRG", "class": "WT", "time": "+27:08"},
+    {"rank": 4, "team": "Team Visma | Lease a Bike", "class": "WT", "time": "+36:22"},
+    {"rank": 5, "team": "Decathlon CMA CGM Team", "class": "WT", "time": "+1:01:19"},
+    {"rank": 6, "team": "EF Education - EasyPost", "class": "WT", "time": "+1:03:40"},
+    {"rank": 7, "team": "Netcompany INEOS", "class": "WT", "time": "+1:04:01"},
+    {"rank": 8, "team": "Movistar Team", "class": "WT", "time": "+1:19:19"},
+    {"rank": 9, "team": "Pinarello Q36.5 Pro Cycling Team", "class": "PRT", "time": "+1:19:47"},
+    {"rank": 10, "team": "Uno-X Mobility", "class": "WT", "time": "+1:25:51"}
+  ],
+  "statistics": {
+    "total_participants": 184,
+    "finished": 184,
+    "dnf": 0,
+    "average_speed_kmh": 46.488,
+    "fastest_avg_kmh": 46.488,
+    "youngest_rider": {"name": "Paul Seixas", "age": 19},
+    "oldest_rider": {"name": "Tim Merlier", "age": 31},
+    "temperature_c": 37,
+    "top_teams": [
+      {"name": "Lidl - Trek", "riders": 8},
+      {"name": "UAE Team Emirates - XRG", "riders": 8},
+      {"name": "Team Visma | Lease a Bike", "riders": 8},
+      {"name": "Red Bull - BORA - hansgrohe", "riders": 8},
+      {"name": "Decathlon CMA CGM Team", "riders": 8}
+    ]
+  },
+  "jerseys": {
+    "yellow": {"name": "Tadej Pogačar", "team": "UAE Team Emirates - XRG", "reason": "المتصدر العام - 28:49:07"},
+    "green": {"name": "Mads Pedersen", "team": "Lidl - Trek", "reason": "متصدر ترتيب النقاط - 228 نقطة (جاء 12 في المرحلة)"},
+    "polka_dot": {"name": "Lenny Martinez", "team": "Bahrain - Victorious", "reason": "متصدر تسلق الجبال - 16 نقطة"},
+    "white": {"name": "Mathias Vacek", "team": "Lidl - Trek", "reason": "أفضل شاب - 28:56:17"}
+  },
+  "general_classification_after_stage": {
+    "top_10": [
+      {"rank": 1, "rider": "Tadej Pogačar", "team": "UAE Team Emirates - XRG", "country": "SLO", "time": "28:49:07", "gap": "0:00"},
+      {"rank": 2, "rider": "Jonas Vingegaard", "team": "Team Visma | Lease a Bike", "country": "DEN", "time": "28:51:49", "gap": "+2:42"},
+      {"rank": 3, "rider": "Isaac Del Toro", "team": "UAE Team Emirates - XRG", "country": "MEX", "time": "28:52:34", "gap": "+3:27"},
+      {"rank": 4, "rider": "Remco Evenepoel", "team": "Red Bull - BORA - hansgrohe", "country": "BEL", "time": "28:52:37", "gap": "+3:30"},
+      {"rank": 5, "rider": "Juan Ayuso", "team": "Lidl - Trek", "country": "ESP", "time": "28:52:41", "gap": "+3:34"},
+      {"rank": 6, "rider": "Paul Seixas", "team": "Decathlon CMA CGM Team", "country": "FRA", "time": "28:53:02", "gap": "+3:55"},
+      {"rank": 7, "rider": "Florian Lipowitz", "team": "Red Bull - BORA - hansgrohe", "country": "GER", "time": "28:53:07", "gap": "+4:00"},
+      {"rank": 8, "rider": "Lenny Martinez", "team": "Bahrain - Victorious", "country": "FRA", "time": "28:53:28", "gap": "+4:21"},
+      {"rank": 9, "rider": "Mattias Skjelmose", "team": "Lidl - Trek", "country": "DEN", "time": "28:54:04", "gap": "+4:57"},
+      {"rank": 10, "rider": "Mathias Vacek", "team": "Lidl - Trek", "country": "CZE", "time": "28:56:17", "gap": "+7:10"}
+    ]
+  }
+}
