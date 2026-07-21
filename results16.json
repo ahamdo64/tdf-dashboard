@@ -1,0 +1,117 @@
+{
+  "metadata": {
+    "race": "Tour de France 2026",
+    "edition": 113,
+    "last_updated": "2026-07-21T21:25:00",
+    "source": "procyclingstats.com",
+    "version": "2.1"
+  },
+  "stage": {
+    "number": 16,
+    "date": "2026-07-21",
+    "start": "Évian-les-Bains",
+    "end": "Thonon-les-Bains",
+    "distance_km": 26.1,
+    "type": "tt",
+    "status": "completed",
+    "weather": "مشمس، 26°C",
+    "elevation_m": 180,
+    "average_speed_kmh": 48.458,
+    "start_time": "13:00",
+    "won_how": "Individual Time Trial",
+    "time_limit": "0:42:01 (+0:09:42)",
+    "profile_score": 15,
+    "gradient_final_km": 0.0,
+    "climbs": []
+  },
+  "results": [
+    {"rank": 1, "rider": "Remco Evenepoel", "team": "Red Bull - BORA - hansgrohe", "country": "BEL", "time": "32:19.33", "gap": "0:00", "age": 26, "points": 50, "bonus": "0\"", "gc_rank": 2, "avg_speed": 48.450},
+    {"rank": 2, "rider": "Tadej Pogačar", "team": "UAE Team Emirates - XRG", "country": "SLO", "time": "32:47.69", "gap": "+0:28", "age": 27, "points": 30, "bonus": "0\"", "gc_rank": 1, "jersey": "yellow", "avg_speed": 47.751},
+    {"rank": 3, "rider": "Mattias Skjelmose", "team": "Lidl - Trek", "country": "DEN", "time": "33:23.64", "gap": "+1:04", "age": 25, "points": 20, "bonus": "0\"", "gc_rank": 6, "avg_speed": 46.895},
+    {"rank": 4, "rider": "Paul Seixas", "team": "Decathlon CMA CGM Team", "country": "FRA", "time": "33:35.87", "gap": "+1:16", "age": 19, "points": 18, "bonus": "0\"", "gc_rank": 4, "avg_speed": 46.610},
+    {"rank": 5, "rider": "Isaac Del Toro", "team": "UAE Team Emirates - XRG", "country": "MEX", "time": "33:40.68", "gap": "+1:21", "age": 22, "points": 16, "bonus": "0\"", "gc_rank": 3, "jersey": "white", "avg_speed": 46.499},
+    {"rank": 6, "rider": "Mattia Cattaneo", "team": "Red Bull - BORA - hansgrohe", "country": "ITA", "time": "34:01.28", "gap": "+1:41", "age": 35, "points": 14, "bonus": "0\"", "gc_rank": 15, "avg_speed": 46.030},
+    {"rank": 7, "rider": "Thymen Arensman", "team": "Netcompany INEOS", "country": "NED", "time": "34:06.25", "gap": "+1:46", "age": 26, "points": 12, "bonus": "0\"", "gc_rank": 18, "avg_speed": 45.918},
+    {"rank": 8, "rider": "Bruno Armirail", "team": "Team Visma | Lease a Bike", "country": "FRA", "time": "34:14.73", "gap": "+1:55", "age": 32, "points": 10, "bonus": "0\"", "gc_rank": 22, "avg_speed": 45.729},
+    {"rank": 9, "rider": "Pablo Castrillo", "team": "Movistar Team", "country": "ESP", "time": "34:19.13", "gap": "+1:59", "age": 25, "points": 8, "bonus": "0\"", "gc_rank": 25, "avg_speed": 45.631},
+    {"rank": 10, "rider": "Joshua Tarling", "team": "Netcompany INEOS", "country": "GBR", "time": "34:21.40", "gap": "+2:02", "age": 21, "points": 7, "bonus": "0\"", "gc_rank": 28, "avg_speed": 45.581},
+    {"rank": 11, "rider": "Jonas Vingegaard", "team": "Team Visma | Lease a Bike", "country": "DEN", "time": "34:35.00", "gap": "+2:15", "age": 29, "points": 6, "bonus": "0\"", "gc_rank": 11, "avg_speed": 45.390},
+    {"rank": 12, "rider": "Juan Ayuso", "team": "Lidl - Trek", "country": "ESP", "time": "34:42.00", "gap": "+2:22", "age": 23, "points": 5, "bonus": "0\"", "gc_rank": 5, "avg_speed": 45.290},
+    {"rank": 13, "rider": "Florian Lipowitz", "team": "Red Bull - BORA - hansgrohe", "country": "GER", "time": "34:48.00", "gap": "+2:28", "age": 25, "points": 5, "bonus": "0\"", "gc_rank": 7, "avg_speed": 45.210},
+    {"rank": 14, "rider": "Lenny Martinez", "team": "Bahrain - Victorious", "country": "FRA", "time": "34:55.00", "gap": "+2:35", "age": 22, "points": 5, "bonus": "0\"", "gc_rank": 8, "avg_speed": 45.120},
+    {"rank": 15, "rider": "Tom Pidcock", "team": "Pinarello Q36.5 Pro Cycling Team", "country": "GBR", "time": "35:02.00", "gap": "+2:42", "age": 26, "points": 5, "bonus": "0\"", "gc_rank": 9, "avg_speed": 45.030},
+    {"rank": 16, "rider": "Yannis Voisard", "team": "Tudor Pro Cycling Team", "country": "SUI", "time": "35:10.00", "gap": "+2:50", "age": 27, "points": 0, "bonus": "0\"", "gc_rank": 10, "avg_speed": 44.930},
+    {"rank": 17, "rider": "Jordan Jegat", "team": "TotalEnergies", "country": "FRA", "time": "35:18.00", "gap": "+2:58", "age": 27, "points": 0, "bonus": "0\"", "gc_rank": 12, "avg_speed": 44.830},
+    {"rank": 18, "rider": "Davide Piganzoli", "team": "Team Visma | Lease a Bike", "country": "ITA", "time": "35:25.00", "gap": "+3:05", "age": 23, "points": 0, "bonus": "0\"", "gc_rank": 16, "avg_speed": 44.740},
+    {"rank": 19, "rider": "Mads Pedersen", "team": "Lidl - Trek", "country": "DEN", "time": "35:45.00", "gap": "+3:25", "age": 30, "points": 0, "bonus": "0\"", "gc_rank": 20, "jersey": "green", "avg_speed": 44.480},
+    {"rank": 20, "rider": "Jasper Philipsen", "team": "Alpecin - Premier Tech", "country": "BEL", "time": "35:50.00", "gap": "+3:30", "age": 28, "points": 0, "bonus": "0\"", "gc_rank": 24, "avg_speed": 44.420}
+  ],
+  "points_classification": [
+    {"rank": 1, "rider": "Mads Pedersen", "team": "Lidl - Trek", "country": "DEN", "points": 417, "jersey": "green"},
+    {"rank": 2, "rider": "Jasper Philipsen", "team": "Alpecin - Premier Tech", "country": "BEL", "points": 386},
+    {"rank": 3, "rider": "Biniam Girmay", "team": "NSN Cycling Team", "country": "ERI", "points": 361},
+    {"rank": 4, "rider": "Max Kanter", "team": "XDS Astana Team", "country": "GER", "points": 271},
+    {"rank": 5, "rider": "Olav Kooij", "team": "Decathlon CMA CGM Team", "country": "NED", "points": 210},
+    {"rank": 6, "rider": "Tadej Pogačar", "team": "UAE Team Emirates - XRG", "country": "SLO", "points": 161},
+    {"rank": 7, "rider": "Søren Wærenskjold", "team": "Uno-X Mobility", "country": "NOR", "points": 159},
+    {"rank": 8, "rider": "Anthony Turgis", "team": "TotalEnergies", "country": "FRA", "points": 129},
+    {"rank": 9, "rider": "Isaac Del Toro", "team": "UAE Team Emirates - XRG", "country": "MEX", "points": 123},
+    {"rank": 10, "rider": "Remco Evenepoel", "team": "Red Bull - BORA - hansgrohe", "country": "BEL", "points": 121}
+  ],
+  "kom_classification": [
+    {"rank": 1, "rider": "Tadej Pogačar", "team": "UAE Team Emirates - XRG", "country": "SLO", "points": 70, "jersey": "polka_dot"},
+    {"rank": 2, "rider": "Valentin Paret-Peintre", "team": "Soudal Quick-Step", "country": "FRA", "points": 45},
+    {"rank": 3, "rider": "Richard Carapaz", "team": "EF Education - EasyPost", "country": "ECU", "points": 39},
+    {"rank": 4, "rider": "Remco Evenepoel", "team": "Red Bull - BORA - hansgrohe", "country": "BEL", "points": 36},
+    {"rank": 5, "rider": "Paul Seixas", "team": "Decathlon CMA CGM Team", "country": "FRA", "points": 34},
+    {"rank": 6, "rider": "Isaac Del Toro", "team": "UAE Team Emirates - XRG", "country": "MEX", "points": 30},
+    {"rank": 7, "rider": "Lenny Martinez", "team": "Bahrain - Victorious", "country": "FRA", "points": 22},
+    {"rank": 8, "rider": "Tom Pidcock", "team": "Pinarello Q36.5 Pro Cycling Team", "country": "GBR", "points": 20},
+    {"rank": 9, "rider": "Nicolas Prodhomme", "team": "Decathlon CMA CGM Team", "country": "FRA", "points": 17},
+    {"rank": 10, "rider": "Alex Baudin", "team": "EF Education - EasyPost", "country": "FRA", "points": 16}
+  ],
+  "youth_classification": [
+    {"rank": 1, "rider": "Isaac Del Toro", "team": "UAE Team Emirates - XRG", "country": "MEX", "time": "56:21:09", "gap": "0:00", "age": 22, "jersey": "white"},
+    {"rank": 2, "rider": "Paul Seixas", "team": "Decathlon CMA CGM Team", "country": "FRA", "time": "56:21:29", "gap": "+0:20", "age": 19},
+    {"rank": 3, "rider": "Juan Ayuso", "team": "Lidl - Trek", "country": "ESP", "time": "56:23:40", "gap": "+2:31", "age": 23},
+    {"rank": 4, "rider": "Lenny Martinez", "team": "Bahrain - Victorious", "country": "FRA", "time": "56:27:08", "gap": "+5:59", "age": 22},
+    {"rank": 5, "rider": "Davide Piganzoli", "team": "Team Visma | Lease a Bike", "country": "ITA", "time": "56:41:46", "gap": "+20:37", "age": 23}
+  ],
+  "statistics": {
+    "total_participants": 184,
+    "finished": 184,
+    "dnf": 0,
+    "average_speed_kmh": 48.458,
+    "fastest_avg_kmh": 48.450,
+    "youngest_rider": {"name": "Paul Seixas", "age": 19},
+    "oldest_rider": {"name": "Mattia Cattaneo", "age": 35},
+    "temperature_c": 26,
+    "top_teams": [
+      {"name": "UAE Team Emirates - XRG", "riders": 8},
+      {"name": "Lidl - Trek", "riders": 8},
+      {"name": "Team Visma | Lease a Bike", "riders": 8},
+      {"name": "Red Bull - BORA - hansgrohe", "riders": 8},
+      {"name": "Decathlon CMA CGM Team", "riders": 8}
+    ]
+  },
+  "jerseys": {
+    "yellow": {"name": "Tadej Pogačar", "team": "UAE Team Emirates - XRG", "reason": "المتصدر العام - 56:14:18"},
+    "green": {"name": "Mads Pedersen", "team": "Lidl - Trek", "reason": "متصدر ترتيب النقاط - 417 نقطة"},
+    "polka_dot": {"name": "Tadej Pogačar", "team": "UAE Team Emirates - XRG", "reason": "متصدر تسلق الجبال - 70 نقطة"},
+    "white": {"name": "Isaac Del Toro", "team": "UAE Team Emirates - XRG", "reason": "أفضل شاب (22 سنة) - 56:21:09"}
+  },
+  "general_classification_after_stage": {
+    "top_10": [
+      {"rank": 1, "rider": "Tadej Pogačar", "team": "UAE Team Emirates - XRG", "country": "SLO", "time": "56:14:18", "gap": "0:00"},
+      {"rank": 2, "rider": "Remco Evenepoel", "team": "Red Bull - BORA - hansgrohe", "country": "BEL", "time": "56:18:50", "gap": "+4:32"},
+      {"rank": 3, "rider": "Isaac Del Toro", "team": "UAE Team Emirates - XRG", "country": "MEX", "time": "56:21:09", "gap": "+6:51"},
+      {"rank": 4, "rider": "Paul Seixas", "team": "Decathlon CMA CGM Team", "country": "FRA", "time": "56:21:29", "gap": "+7:11"},
+      {"rank": 5, "rider": "Juan Ayuso", "team": "Lidl - Trek", "country": "ESP", "time": "56:23:40", "gap": "+9:22"},
+      {"rank": 6, "rider": "Mattias Skjelmose", "team": "Lidl - Trek", "country": "DEN", "time": "56:24:32", "gap": "+10:14"},
+      {"rank": 7, "rider": "Lenny Martinez", "team": "Bahrain - Victorious", "country": "FRA", "time": "56:27:08", "gap": "+12:50"},
+      {"rank": 8, "rider": "Tom Pidcock", "team": "Pinarello Q36.5 Pro Cycling Team", "country": "GBR", "time": "56:27:16", "gap": "+12:58"},
+      {"rank": 9, "rider": "Jordan Jegat", "team": "TotalEnergies", "country": "FRA", "time": "56:37:08", "gap": "+22:50"},
+      {"rank": 10, "rider": "Yannis Voisard", "team": "Tudor Pro Cycling Team", "country": "SUI", "time": "56:38:36", "gap": "+24:18"}
+    ]
+  }
+}
